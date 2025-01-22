@@ -7,18 +7,21 @@ public class BaseCanvasController : MonoBehaviour
 
     protected Dictionary<GameScreenType, GameScreen> _instantiatedScreens = new();
 
+    // po aktivaci objektu se pøihlásí metody k eventùm
     private void OnEnable()
     {
         ScreenEvents.OnGameScreenOpened += ShowGameScreen;
         ScreenEvents.OnGameScreenClosed += CloseGameScreen;
     }
 
+    // po deaktivaci objektu se odhlásí metody od eventù
     private void OnDisable()
     {
         ScreenEvents.OnGameScreenOpened -= ShowGameScreen;
         ScreenEvents.OnGameScreenClosed -= CloseGameScreen;
     }
 
+    // zobrazí game screenu, pokud již neexistuje její instance
     protected void ShowGameScreen(GameScreenType gameScreenType)
     {
         if ((_instantiatedScreens.ContainsKey(gameScreenType) && _instantiatedScreens[gameScreenType] == null) ||
@@ -28,6 +31,7 @@ public class BaseCanvasController : MonoBehaviour
         }
     }
 
+    // zavøe game screenu - znièí, pokud je instancovaná
     protected void CloseGameScreen(GameScreenType gameScreenType)
     {
         if (_instantiatedScreens.ContainsKey(gameScreenType))
@@ -46,21 +50,14 @@ public class BaseCanvasController : MonoBehaviour
         }
     }
 
-    protected void DestroyGameScreen(GameScreenType gameScreenType)
-    {
-        if (_instantiatedScreens.ContainsKey(gameScreenType))
-        {
-            Destroy(_instantiatedScreens[gameScreenType].gameObject);
-            _instantiatedScreens.Remove(gameScreenType);
-        }
-    }
-
+    // instancuje screenu
     private void InstantiateScreen(GameScreenType gameScreenType)
     {
         GameScreen screenInstance = GetRelevantScreen(gameScreenType);
         InstantiateScreen(screenInstance);
     }
 
+    // instancuje screenu pokud není prázdná
     private void InstantiateScreen(GameScreen screenInstance)
     {
         if (screenInstance != null)
@@ -70,6 +67,7 @@ public class BaseCanvasController : MonoBehaviour
         }
     }
 
+    // vrací konkrétní screen
     protected virtual GameScreen GetRelevantScreen(GameScreenType gameScreenType)
     {
         return gameScreenType switch
@@ -78,6 +76,7 @@ public class BaseCanvasController : MonoBehaviour
         };
     }
 
+    // vrací aktivní screen
     protected virtual GameScreenType GetActiveGameScreen(GameScreenType gameScreenType)
     {
         return gameScreenType switch

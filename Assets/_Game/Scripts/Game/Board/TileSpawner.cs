@@ -5,6 +5,7 @@ public class TileSpawner
 {
     private Grid<GridNode> _grid;
 
+    // vyspawnuje prazdné políèka pro všechny pozice v møížce
     public void SpawnTiles(Grid<GridNode> grid, BoardTile tilePrefab, Column columnPrefab, Transform spawnTransform)
     {
         _grid = grid;
@@ -21,7 +22,8 @@ public class TileSpawner
             PlaceColumn(x, columnPrefab, spawnTransform, nodes);
         }
     }
-
+    
+    // vyspawnuje collider sloupcù
     private void PlaceColumn(int x, Column columnPrefab, Transform spawnTransform, List<GridNode> nodes)
     {
         Column column = Object.Instantiate(columnPrefab, spawnTransform);
@@ -29,6 +31,7 @@ public class TileSpawner
         column.Init(_grid.GetHeight(), nodes);
     }
 
+    // vyspawnuje prázdné políèko
     private GridNode PlaceBoardTile(int x, int y, BoardTile tilePrefab, Transform spawnTransform)
     {
         GridNode gridNode = _grid.GetGridObject(x, y);

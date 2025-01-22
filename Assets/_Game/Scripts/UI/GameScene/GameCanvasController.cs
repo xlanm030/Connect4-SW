@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class GameCanvasController : BaseCanvasController
 {
+    // screen paus menu a end screen
     [SerializeField] private PauseMenuScreen _pauseMenuScreen;
     [SerializeField] private GameEndScreen _gameEndScreen;
 
+    // zapínání a vypínání pause menu
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -21,6 +23,7 @@ public class GameCanvasController : BaseCanvasController
         }
     }
 
+    // vrátí požadovanou screenu
     protected override GameScreen GetRelevantScreen(GameScreenType gameScreenType)
     {
         return gameScreenType switch

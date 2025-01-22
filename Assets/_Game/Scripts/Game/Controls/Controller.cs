@@ -7,11 +7,13 @@ public class Controller : MonoBehaviour
     private Column _selectedColumn;
     private BaseCanvasController _activeCanvas;
 
+    // najde první objekt
     private void Awake()
     {
         _activeCanvas = FindFirstObjectByType<BaseCanvasController>();
     }
 
+    // po splnìní podmínek mùžeme umístit token
     private void Update()
     {
         if (_activeCanvas.ActiveGameScreen != null && _activeCanvas.ActiveGameScreen.GameScreenType == GameScreenType.Pause)
@@ -34,6 +36,8 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // kontrola myši se sloupcema
+    // pøi detekci kolize se nastavý vybraný sloupec na vybraný
     private void HandleMouseInput()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

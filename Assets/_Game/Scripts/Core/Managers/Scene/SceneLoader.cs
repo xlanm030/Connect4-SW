@@ -7,7 +7,7 @@ public static class SceneLoader
 {
     public enum Scenes
     {
-        BootScene,
+        ManagerScene,
         MenuScene,
         GameScene
     }

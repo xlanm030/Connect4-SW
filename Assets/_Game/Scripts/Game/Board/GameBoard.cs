@@ -16,6 +16,7 @@ public class GameBoard : MonoBehaviour
         transform.position = new(-(GameManager.Instance.ColumnCount / 2f) + 0.5f, -(GameManager.Instance.RowCount / 2f) - 0.5f, 0);
     }
 
+    // kontroluje stav výhry
     public void CheckWinCondition(GridNode lastPlacedNode)
     {
         bool gameEnded = false;
@@ -49,6 +50,7 @@ public class GameBoard : MonoBehaviour
         }
     }
 
+    // kontrola remízy
     private bool IsTie()
     {
         bool tie = true;
@@ -68,6 +70,7 @@ public class GameBoard : MonoBehaviour
         return tie;
     }
 
+    // kontola poètu tokenù
     private int CountConsecutiveTokens(GridNode startNode, Vector2Int direction, bool isRed)
     {
         int count = 1;
@@ -76,6 +79,7 @@ public class GameBoard : MonoBehaviour
         return count;
     }
 
+    // kontrola tokenù ve smìru
     private int CountInDirection(GridNode startNode, Vector2Int direction, bool isRed)
     {
         int count = 0;

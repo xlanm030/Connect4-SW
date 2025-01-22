@@ -6,9 +6,10 @@ public class GameScreen : MonoBehaviour
     // typ obrazovky
     public GameScreenType GameScreenType;
 
-    // metoda CloseScreen, která zavírá herní obrazovku pomocí zavolání statického eventu v tøídì ScreenEvents
+    // metoda uzavírá aktivní screenu
     public void CloseScreen()
     {
+        // event zavøe screenu
         ScreenEvents.OnGameScreenClosedInvoke(GameScreenType);
     }
 }

@@ -11,6 +11,7 @@ public class Column : MonoBehaviour
     private List<GridNode> _nodes = new();
     private bool _highlighted;
 
+    // inicializace sloupce
     public void Init(float height, List<GridNode> nodes)
     {
         _nodes = nodes;
@@ -18,6 +19,7 @@ public class Column : MonoBehaviour
         _highlight.transform.position = new Vector3(_highlight.transform.position.x, height, _highlight.transform.position.z);
     }
 
+    // zobrazí zvýrazòující prvek
     public void SetHighlight(bool highlighted)
     {
         if (_highlighted == highlighted)
@@ -29,6 +31,7 @@ public class Column : MonoBehaviour
         _highlight.enabled = highlighted;
     }
 
+    // pøiradí barvu urèitému políèku v møížce
     public void PlaceToken(GameBoard gameBoard)
     {
         foreach (GridNode node in _nodes)
@@ -48,7 +51,6 @@ public class Column : MonoBehaviour
                     node.BoardTile.SetColor(Color.blue);
                 }
 
-                // node.BoardTile.TriggerPlacementEffect();
                 gameBoard.CheckWinCondition(node);
                 GameManager.Instance.SwitchTurn();
                 return;
